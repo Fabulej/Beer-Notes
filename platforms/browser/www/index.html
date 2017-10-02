@@ -4,8 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Blank App</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
+       <div data-role="header">
+           <h1>Piwny Pamiętnik</h1>
+       </div>
+       <div id="newBeerSection">Zapamiętaj co wypiłeś
+           <input type="text" placeholder="New Beer" id="newBeerInput">
+           <input type="number" placeholder="ibu" id="ibu">
+           <button id="addNewBeer">Zapamiętaj</button>
+       </div>
+       <ul id="beerList">
+           
+       </ul>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.slim.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

@@ -9,9 +9,10 @@ $ (document).ready(function(){
         beerList = JSON.parse(window.localStorage.getItem('beerList'));
     }
     
+    
     if(null != beerList){
         for(i=0;i<beerList.length;i++){
-            var newBeer = '<li data-key="' + beerList[i].key + '">' + beerList[i].beer + beerList[i].ibu + '</li>';
+            var newBeer = '<div data-role="collapsible" data-key="' + beerList[i].key + '"><h4>' + beerList[i].beer  + '</h4><p>' + beerList[i].ibu + '</p></div>';
             $beerList.append(newBeer);
         }
     } else  {
@@ -20,7 +21,7 @@ $ (document).ready(function(){
     
     $('#addNewBeer').on('click', function(){
        var key = Date.now();
-       var newBeer = '<li data-key="' + key + '">' + $newBeerInput.val() +'</li>';
+       var newBeer = '<div data-role="collapsible" data-key="' + key +'"><h4>' + $newBeerInput.val() + '</h4><p>' + $ibu.val() + '</p></div>';
         $beerList.append(newBeer);
         beerList.push({key:key, beer:$newBeerInput.val(), ibu:$ibu.val()});
         if (window.localStorage){

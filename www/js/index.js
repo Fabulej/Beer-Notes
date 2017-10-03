@@ -36,7 +36,7 @@ $(document).ready(function(){
     
     $('#addNewBeer').on('click', function(){
        var key = Date.now();
-        if ($newBeerInput.val() == "" || ($abv.val() < 0.1 || $abv.val() > 70) || ($ibu.val() < 1 || $ibu.val() > 120) || ($plato.val() < 1 || $plato.val() > 50) || ($rate.val() < 0.5 || $rate.val() > 10)){
+        if ($newBeerInput.val() == "" || ($abv.val() != "" && ($abv.val() < 0.1 || $abv.val() > 70)) || ($ibu.val() != "" && ($ibu.val() < 1 || $ibu.val() > 120)) || ($plato.val() != "" && ($plato.val() < 1 || $plato.val() > 50)) || ($rate.val() != "" && ($rate.val() < 0.5 || $rate.val() > 10))){
             console.log('błąd danych');
         } else {
            var newBeer = '<div data-role="collapsible" data-collapsed-icon="arrow-d" data-key="' + key +'"><h4>' + $newBeerInput.val() + '</h4><p>IBU: ' + validateForm($ibu.val()) + '</p><p>ABV: ' + validateForm($abv.val()) + '</p><p>Browar: ' + validateForm($brewery.val()) + '</p><p>Styl: ' + validateForm($style.val()) + '</p><p>Plato: ' + validateForm($plato.val()) + '</p><p>Ocena: ' + validateForm($rate.val()) + '</p></div>';

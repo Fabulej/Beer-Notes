@@ -42,7 +42,19 @@
           <div id="beerList" data-role="collapsible-set">
           </div>
         </div>
-           
+           <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+            <script>
+              // Initialize Firebase
+              var config = {
+                apiKey: "AIzaSyBlYUp0sHQdMbFf_6w-zjOoSqkkd7LRgaY",
+                authDomain: "beernotes-f9c96.firebaseapp.com",
+                databaseURL: "https://beernotes-f9c96.firebaseio.com",
+                projectId: "beernotes-f9c96",
+                storageBucket: "beernotes-f9c96.appspot.com",
+                messagingSenderId: "1071730273019"
+              };
+              firebase.initializeApp(config);
+            </script>
             <script type="text/javascript" src="cordova.js"></script>
             <script type="text/javascript" src="js/jquery-3.2.1.slim.min.js"></script>
         </div>

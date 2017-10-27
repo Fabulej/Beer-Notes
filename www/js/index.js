@@ -1,3 +1,14 @@
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBlYUp0sHQdMbFf_6w-zjOoSqkkd7LRgaY",
+    authDomain: "beernotes-f9c96.firebaseapp.com",
+    databaseURL: "https://beernotes-f9c96.firebaseio.com",
+    projectId: "beernotes-f9c96",
+    storageBucket: "beernotes-f9c96.appspot.com",
+    messagingSenderId: "1071730273019"
+  };
+  firebase.initializeApp(config);
+
 var beerList = new Array();
 
 function validateForm(toValidate){
@@ -21,12 +32,14 @@ $(document).ready(function(){
     ref.on('value', gotData, errData);
     
     function gotData(data) {
+    beerList = null;
         var beers = data.val();
         var keys = Object.keys(beers);
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i];
-           var newBeer = '<div data-role="collapsible" data-collapsed-icon="arrow-d" data-key="' + beers[k].key + '"><h4>' + beers[k].beer + '</h4><p>IBU: ' + validateForm(beers[k].ibu) + '</p><p>ABV: ' + validateForm(beers[k].abv) + '</p><p>Browar: ' + validateForm(beers[k].brewery) + '</p><p>Styl: ' + validateForm(beers[k].style) + '</p><p>Plato: ' + validateForm(beers[k].plato) + '</p><p>Ocena: ' + validateForm(beers[k].rate) + '</p></div>';
-           $beerList.append(newBeer);          
+           var newBeer = '<ul class="beerInfo" data-key="' + beers[k].key + '"><li class="name"><h4>' + beers[k].beer + '</h4></li><li>IBU: ' + validateForm(beers[k].ibu) + '</li><li>ABV: ' + validateForm(beers[k].abv) + '</li><li>Browar: ' + validateForm(beers[k].brewery) + '</li><li>Styl: ' + validateForm(beers[k].style) + '</li><li>Plato: ' + validateForm(beers[k].plato) + '</li><li>Ocena: ' + validateForm(beers[k].rate) + '</li></ul>';
+           $beerList.append(newBeer);   
+            
         }  
     }
     
@@ -41,12 +54,10 @@ $(document).ready(function(){
         if ($newBeerInput.val() == "" || ($abv.val() != "" && ($abv.val() < 0.1 || $abv.val() > 70)) || ($ibu.val() != "" && ($ibu.val() < 1 || $ibu.val() > 120)) || ($plato.val() != "" && ($plato.val() < 1 || $plato.val() > 50)) || ($rate.val() != "" && ($rate.val() < 0.5 || $rate.val() > 10))){
             console.log('błąd danych');
         } else {
-           var newBeer = '<div data-role="collapsible" data-collapsed-icon="arrow-d" data-key="' + key +'"><h4>' + $newBeerInput.val() + '</h4><p>IBU: ' + validateForm($ibu.val()) + '</p><p>ABV: ' + validateForm($abv.val()) + '</p><p>Browar: ' + validateForm($brewery.val()) + '</p><p>Styl: ' + validateForm($style.val()) + '</p><p>Plato: ' + validateForm($plato.val()) + '</p><p>Ocena: ' + validateForm($rate.val()) + '</p></div>';
-            $beerList.append(newBeer);
             ref.push({key:key, beer:$newBeerInput.val(), ibu:$ibu.val(), abv:$abv.val(), brewery:$brewery.val(), style:$style.val(), plato:$plato.val(), rate:$rate.val()});
             $newBeerInput.val('');
-            location.reload();
+            $('#closeForm').click();
+            $("ul").last().get(0).scrollIntoView();
         }
-
     });
 });

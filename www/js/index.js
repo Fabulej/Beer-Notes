@@ -9,8 +9,6 @@
   };
   firebase.initializeApp(config);
 
-var beerList = new Array();
-
 function validateForm(toValidate){
     if (toValidate != ''){
         return toValidate;
@@ -33,14 +31,14 @@ $(document).ready(function(){
     ref.on('value', gotData, errData);
     
     function gotData(data) {
-    beerList = null;
         var beers = data.val();
         var keys = Object.keys(beers);
+        $('#beerList').empty();
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i];
            var newBeer = '<ul class="beerInfo" data-key="' + beers[k].key + '"><li class="name"><h4>' + beers[k].beer + '</h4></li><li>IBU: ' + validateForm(beers[k].ibu) + '</li><li>ABV: ' + validateForm(beers[k].abv) + '</li><li>Browar: ' + validateForm(beers[k].brewery) + '</li><li>Styl: ' + validateForm(beers[k].style) + '</li><li>Plato: ' + validateForm(beers[k].plato) + '</li><li>Ocena: ' + validateForm(beers[k].rate) + '</li></ul>';
-           $beerList.append(newBeer);   
             
+           $('#beerList').append(newBeer);
         }  
     }
     
@@ -58,7 +56,8 @@ $(document).ready(function(){
             ref.push({key:key, beer:$newBeerInput.val(), ibu:$ibu.val(), abv:$abv.val(), brewery:$brewery.val(), style:$style.val(), plato:$plato.val(), rate:$rate.val()});
             $newBeerInput.val('');
             $('#closeForm').click();
-            $("ul").last().get(0).scrollIntoView();
+             $("ul").last().get(0).scrollIntoView();
+
         }
     });
     $('#closeForm').on('click', function(){

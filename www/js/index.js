@@ -29,6 +29,7 @@ $(document).ready(function(){
     var $plato = $('#plato');
     var $rate = $('#rate');
     var ref = firebase.database().ref('beers');
+    var hideandseek = true;
     ref.on('value', gotData, errData);
     
     $('input').on('focus', function(e) {
@@ -63,6 +64,15 @@ $(document).ready(function(){
             $newBeerInput.val('');
             $('#closeForm').click();
             $("ul").last().get(0).scrollIntoView();
+        }
+    });
+    $('#closeForm').on('click', function(){
+        if(hideandseek === true) {
+            $('#beerList').hide();
+            hideandseek = false;
+        } else {
+            $('#beerList').show();
+            hideandseek = true;
         }
     });
 });

@@ -30,6 +30,7 @@ background-color: #393f4d;
 }
 #beerList{
 	text-align: left;
+    z-index: -1;
 
 }
 

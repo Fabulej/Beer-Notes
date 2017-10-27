@@ -30,16 +30,19 @@ background-color: #393f4d;
 }
 #beerList{
 	text-align: left;
-    z-index: -1;
-
 }
 
 .beerInfo{
     list-style: none;
     padding-top: 0px;
     padding-left: 10px;
+    padding-right: 10px;
     color: antiquewhite;
     overflow: hidden;
+}
+
+.ui-filterable {
+    padding: 10px;
 }
 
 .name{
